@@ -5,21 +5,28 @@ import SimpleDB from './db.js';
 const db = new SimpleDB();
 
 // Handle search form submission
-document.getElementById('searchForm')?.addEventListener('submit', function(event) {
+const searchForm = document.getElementById('searchForm');
+
+function submitFormFn(event) {
     event.preventDefault();
 
-    const searchQuery = document.getElementById('searchQuery').value.trim();
+    const searchQueryElement = document.getElementById('searchQuery');
+
+    const searchQuery = searchQueryElement.value.trim();
     if (searchQuery) {
         db.create({ query: searchQuery, timestamp: new Date().toLocaleString() });
-        sessionStorage.setItem('searchQuery', searchQuery);
+        localStorage.setItem('searchQuery', searchQuery);
         window.location.href = 'results.html';
     }
-});
+}
+
+searchForm?.addEventListener("submit", submitFormFn);
+
 
 // Display search results
 if (window.location.pathname.endsWith('results.html')) {
     const resultsContainer = document.getElementById('resultsContainer');
-    const searchQuery = sessionStorage.getItem('searchQuery');
+    const searchQuery = localStorage.getItem('searchQuery');
     if (searchQuery) {
         resultsContainer.innerHTML = `<p>You searched for: <strong>${searchQuery}</strong></p>`;
         // Here you can add logic to display actual search results
