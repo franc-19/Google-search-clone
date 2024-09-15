@@ -1,6 +1,6 @@
 # Google-search-clone
 # **Building a Simple Google Search Clone**
-
+.
 Intro
 
 Here's a tutorial on how to build a simple Google Search clone using JavaScript. We'll use the `SimpleDB` class from the previous tutorial to store search results and display them on a search results page. Additionally, we'll create a history page to display past searches. The footer will include links to `History`, `T&C`, and `About`, and will be centered on every page.
